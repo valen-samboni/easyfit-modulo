@@ -354,6 +354,10 @@ btnContraste.addEventListener("click", () => {
         "altoContraste",
         contrasteActivo
     );
+
+    btnContraste.textContent = contrasteActivo
+        ? "Desactivar contraste"
+        : "Activar contraste";
 });
 
 const contrasteGuardado =
@@ -364,6 +368,13 @@ if(contrasteGuardado === "true"){
     document.body.classList.add(
         "alto-contraste"
     );
+
+    btnContraste.textContent = 
+        "Desactivar contraste"; 
+    }
+    else { 
+        btnContraste.textContent = 
+        "Activar contraste";
 }
 
 btnVoz.textContent = vozActiva
