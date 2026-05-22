@@ -2,6 +2,7 @@ const pantallaInicio = document.getElementById("pantalla-inicio");
 const pantallaEjercicio = document.getElementById("pantalla-ejercicio");
 const pantallaFinal = document.getElementById("pantalla-final");
 const pantallaAjustes = document.getElementById("pantalla-ajustes");
+const pantallaEstadisticas = document.getElementById("pantalla-estadisticas");
 
 const btnIniciar = document.getElementById("btn-iniciar");
 const btnSiguiente = document.getElementById("btn-siguiente");
@@ -10,6 +11,9 @@ const btnReiniciar = document.getElementById("btn-reiniciar");
 
 const btnAjustes = document.getElementById("btn-ajustes");
 const btnVolver = document.getElementById("btn-volver");
+
+const btnEstadisticas = document.getElementById("btn-estadisticas");
+const btnVolverEstadisticas = document.getElementById("btn-volver-estadisticas");
 
 const btnAumentar = document.getElementById("btn-aumentar");
 const btnDisminuir = document.getElementById("btn-disminuir");
@@ -22,11 +26,21 @@ const imagenEjercicio = document.getElementById("imagen-ejercicio");
 
 const progreso = document.getElementById("progreso");
 
+const estadisticaRutinas =
+    document.getElementById("estadistica-rutinas");
+
+const estadisticaProgreso =
+    document.getElementById("estadistica-progreso");
+
 let ejercicioActual = 0;
-let vozActiva = 
+let vozActiva =
     localStorage.getItem("vozActiva") !== "false";
+
 let tamanioFuente = 22;
 let intervaloTemporizador;
+
+let rutinasCompletadas =
+    parseInt(localStorage.getItem("rutinasCompletadas")) || 0;
 
 const mensajes = [
     "¡Excelente trabajo!",
@@ -42,6 +56,7 @@ function cambiarPantalla(pantalla){
     pantallaEjercicio.classList.remove("activa");
     pantallaFinal.classList.remove("activa");
     pantallaAjustes.classList.remove("activa");
+    pantallaEstadisticas.classList.remove("activa");
 
     pantalla.classList.add("activa");
 }
@@ -51,7 +66,8 @@ function actualizarProgreso(){
     const porcentaje =
         ((ejercicioActual + 1) / ejercicios.length) * 100;
 
-    progreso.style.width = porcentaje + "%";
+    progreso.style.width =
+        porcentaje + "%";
 }
 
 function hablarTexto(texto){
@@ -88,11 +104,11 @@ function mostrarMensajeMotivacional(){
 
     divMensaje.classList.add("mensaje");
 
-    divMensaje.textContent = mensajes[indice];
+    divMensaje.textContent =
+        mensajes[indice];
 
     pantallaEjercicio.appendChild(divMensaje);
 }
-
 
 function iniciarTemporizador(){
 
@@ -108,7 +124,8 @@ function iniciarTemporizador(){
         temporizadorExistente =
             document.createElement("p");
 
-        temporizadorExistente.id = "temporizador";
+        temporizadorExistente.id =
+            "temporizador";
 
         pantallaEjercicio.appendChild(
             temporizadorExistente
@@ -118,7 +135,8 @@ function iniciarTemporizador(){
     temporizadorExistente.textContent =
         `Tiempo de descanso: ${tiempo} segundos`;
 
-    intervaloTemporizador = setInterval(() => {
+    intervaloTemporizador =
+        setInterval(() => {
 
         tiempo--;
 
@@ -160,6 +178,21 @@ function cargarProgreso(){
 
         mostrarEjercicio();
     }
+}
+
+function actualizarEstadisticas(){
+
+    estadisticaRutinas.textContent =
+        rutinasCompletadas;
+
+    const porcentaje =
+        Math.round(
+            ((ejercicioActual + 1)
+            / ejercicios.length) * 100
+        );
+
+    estadisticaProgreso.textContent =
+        porcentaje + "%";
 }
 
 function mostrarEjercicio(){
@@ -208,6 +241,13 @@ btnSiguiente.addEventListener("click", () => {
 
     }else{
 
+        rutinasCompletadas++;
+
+        localStorage.setItem(
+            "rutinasCompletadas",
+            rutinasCompletadas
+        );
+
         cambiarPantalla(
             pantallaFinal
         );
@@ -250,6 +290,22 @@ btnVolver.addEventListener("click", () => {
     );
 });
 
+btnEstadisticas.addEventListener("click", () => {
+
+    actualizarEstadisticas();
+
+    cambiarPantalla(
+        pantallaEstadisticas
+    );
+});
+
+btnVolverEstadisticas.addEventListener("click", () => {
+
+    cambiarPantalla(
+        pantallaInicio
+    );
+});
+
 btnAumentar.addEventListener("click", () => {
 
     tamanioFuente += 2;
@@ -273,8 +329,9 @@ btnVoz.addEventListener("click", () => {
 
     vozActiva = !vozActiva;
 
-    localStorage.setItem( 
-        "vozActiva", vozActiva 
+    localStorage.setItem(
+        "vozActiva",
+        vozActiva
     );
 
     btnVoz.textContent = vozActiva
@@ -288,16 +345,17 @@ btnContraste.addEventListener("click", () => {
         "alto-contraste"
     );
 
-    const contrasteActivo = document.body.classList.contains(
-        "alto-contraste"
-    ); 
-    localStorage.setItem( 
-        "altoContraste", 
-        contrasteActivo 
+    const contrasteActivo =
+        document.body.classList.contains(
+            "alto-contraste"
+        );
+
+    localStorage.setItem(
+        "altoContraste",
+        contrasteActivo
     );
 });
 
-cargarProgreso();
 const contrasteGuardado =
     localStorage.getItem("altoContraste");
 
@@ -311,3 +369,5 @@ if(contrasteGuardado === "true"){
 btnVoz.textContent = vozActiva
     ? "Desactivar voz"
     : "Activar voz";
+
+cargarProgreso();
