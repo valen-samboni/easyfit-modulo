@@ -23,7 +23,8 @@ const imagenEjercicio = document.getElementById("imagen-ejercicio");
 const progreso = document.getElementById("progreso");
 
 let ejercicioActual = 0;
-let vozActiva = true;
+let vozActiva = 
+    localStorage.getItem("vozActiva") !== "false";
 let tamanioFuente = 22;
 let intervaloTemporizador;
 
@@ -152,6 +153,12 @@ function cargarProgreso(){
 
         ejercicioActual =
             parseInt(progresoGuardado);
+
+        cambiarPantalla(
+            pantallaEjercicio
+        );
+
+        mostrarEjercicio();
     }
 }
 
@@ -266,6 +273,10 @@ btnVoz.addEventListener("click", () => {
 
     vozActiva = !vozActiva;
 
+    localStorage.setItem( 
+        "vozActiva", vozActiva 
+    );
+
     btnVoz.textContent = vozActiva
         ? "Desactivar voz"
         : "Activar voz";
@@ -276,6 +287,27 @@ btnContraste.addEventListener("click", () => {
     document.body.classList.toggle(
         "alto-contraste"
     );
+
+    const contrasteActivo = document.body.classList.contains(
+        "alto-contraste"
+    ); 
+    localStorage.setItem( 
+        "altoContraste", 
+        contrasteActivo 
+    );
 });
 
 cargarProgreso();
+const contrasteGuardado =
+    localStorage.getItem("altoContraste");
+
+if(contrasteGuardado === "true"){
+
+    document.body.classList.add(
+        "alto-contraste"
+    );
+}
+
+btnVoz.textContent = vozActiva
+    ? "Desactivar voz"
+    : "Activar voz";
