@@ -12,6 +12,7 @@ body{
     align-items:center;
     min-height:100vh;
     padding:20px;
+    transition:0.3s;
 }
 
 .contenedor{
@@ -81,6 +82,7 @@ h2{
     cursor:pointer;
     font-weight:bold;
     transition:0.3s;
+    margin-top:15px;
 }
 
 .boton-principal:hover{
@@ -101,6 +103,7 @@ h2{
     font-size:20px;
     cursor:pointer;
     transition:0.3s;
+    margin-top:10px;
 }
 
 .boton-secundario:hover{
@@ -168,6 +171,62 @@ h2{
     font-weight:bold;
 }
 
+.grupo-ajustes{
+    margin:25px 0;
+}
+
+.grupo-ajustes p{
+    font-size:22px;
+    color:#444;
+    margin-bottom:10px;
+}
+
+.fila-botones{
+    display:flex;
+    gap:10px;
+}
+
+.alto-contraste{
+    background:black !important;
+    color:white !important;
+}
+
+.alto-contraste .contenedor{
+    background:#111;
+}
+
+.alto-contraste h1,
+.alto-contraste h2,
+.alto-contraste p{
+    color:white;
+}
+
+.alto-contraste .boton-secundario{
+    background:#333;
+    color:white;
+}
+
+.alto-contraste #descripcion-ejercicio{
+    color:#ffffff;
+}
+
+.alto-contraste .bienvenida{
+    color:#ffffff;
+}
+
+.alto-contraste #temporizador{
+    color:#ffd166;
+}
+
+.alto-contraste .mensaje{
+    background:#222;
+    color:#ffffff;
+}
+
+.alto-contraste .barra-progreso{
+    background:#444;
+}
+
 @media(max-width:480px){
 
     .contenedor{
@@ -191,3 +250,4 @@ h2{
         font-size:18px;
     }
 }
+

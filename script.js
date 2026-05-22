@@ -1,11 +1,20 @@
 const pantallaInicio = document.getElementById("pantalla-inicio");
 const pantallaEjercicio = document.getElementById("pantalla-ejercicio");
 const pantallaFinal = document.getElementById("pantalla-final");
+const pantallaAjustes = document.getElementById("pantalla-ajustes");
 
 const btnIniciar = document.getElementById("btn-iniciar");
 const btnSiguiente = document.getElementById("btn-siguiente");
 const btnAudio = document.getElementById("btn-audio");
 const btnReiniciar = document.getElementById("btn-reiniciar");
+
+const btnAjustes = document.getElementById("btn-ajustes");
+const btnVolver = document.getElementById("btn-volver");
+
+const btnAumentar = document.getElementById("btn-aumentar");
+const btnDisminuir = document.getElementById("btn-disminuir");
+const btnVoz = document.getElementById("btn-voz");
+const btnContraste = document.getElementById("btn-contraste");
 
 const tituloEjercicio = document.getElementById("titulo-ejercicio");
 const descripcionEjercicio = document.getElementById("descripcion-ejercicio");
@@ -14,6 +23,9 @@ const imagenEjercicio = document.getElementById("imagen-ejercicio");
 const progreso = document.getElementById("progreso");
 
 let ejercicioActual = 0;
+let vozActiva = true;
+let tamanioFuente = 22;
+let intervaloTemporizador;
 
 const mensajes = [
     "¡Excelente trabajo!",
@@ -28,6 +40,7 @@ function cambiarPantalla(pantalla){
     pantallaInicio.classList.remove("activa");
     pantallaEjercicio.classList.remove("activa");
     pantallaFinal.classList.remove("activa");
+    pantallaAjustes.classList.remove("activa");
 
     pantalla.classList.add("activa");
 }
@@ -42,9 +55,12 @@ function actualizarProgreso(){
 
 function hablarTexto(texto){
 
+    if(!vozActiva) return;
+
     speechSynthesis.cancel();
 
-    const voz = new SpeechSynthesisUtterance(texto);
+    const voz =
+        new SpeechSynthesisUtterance(texto);
 
     voz.lang = "es-ES";
 
@@ -76,7 +92,10 @@ function mostrarMensajeMotivacional(){
     pantallaEjercicio.appendChild(divMensaje);
 }
 
+
 function iniciarTemporizador(){
+
+    clearInterval(intervaloTemporizador);
 
     let tiempo = 15;
 
@@ -90,13 +109,15 @@ function iniciarTemporizador(){
 
         temporizadorExistente.id = "temporizador";
 
-        pantallaEjercicio.appendChild(temporizadorExistente);
+        pantallaEjercicio.appendChild(
+            temporizadorExistente
+        );
     }
 
     temporizadorExistente.textContent =
         `Tiempo de descanso: ${tiempo} segundos`;
 
-    const intervalo = setInterval(() => {
+    intervaloTemporizador = setInterval(() => {
 
         tiempo--;
 
@@ -105,7 +126,7 @@ function iniciarTemporizador(){
 
         if(tiempo <= 0){
 
-            clearInterval(intervalo);
+            clearInterval(intervaloTemporizador);
 
             temporizadorExistente.textContent =
                 "¡Continuemos!";
@@ -129,7 +150,8 @@ function cargarProgreso(){
 
     if(progresoGuardado !== null){
 
-        ejercicioActual = parseInt(progresoGuardado);
+        ejercicioActual =
+            parseInt(progresoGuardado);
     }
 }
 
@@ -207,5 +229,53 @@ btnReiniciar.addEventListener("click", () => {
     );
 });
 
-cargarProgreso();
+btnAjustes.addEventListener("click", () => {
 
+    cambiarPantalla(
+        pantallaAjustes
+    );
+});
+
+btnVolver.addEventListener("click", () => {
+
+    cambiarPantalla(
+        pantallaInicio
+    );
+});
+
+btnAumentar.addEventListener("click", () => {
+
+    tamanioFuente += 2;
+
+    document.body.style.fontSize =
+        tamanioFuente + "px";
+});
+
+btnDisminuir.addEventListener("click", () => {
+
+    if(tamanioFuente > 16){
+
+        tamanioFuente -= 2;
+
+        document.body.style.fontSize =
+            tamanioFuente + "px";
+    }
+});
+
+btnVoz.addEventListener("click", () => {
+
+    vozActiva = !vozActiva;
+
+    btnVoz.textContent = vozActiva
+        ? "Desactivar voz"
+        : "Activar voz";
+});
+
+btnContraste.addEventListener("click", () => {
+
+    document.body.classList.toggle(
+        "alto-contraste"
+    );
+});
+
+cargarProgreso();
