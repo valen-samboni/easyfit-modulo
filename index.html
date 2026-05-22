@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EASYFIT</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <!-- PANTALLA INICIO -->
+        <section id="pantalla-inicio" class="pantalla activa">
+
+            <img src="assets/img/logo.png" class="logo">
+
+            <h1>EASYFIT</h1>
+
+            <p class="bienvenida">
+                Bienvenido a tu rutina guiada de ejercicios
+            </p>
+
+            <button id="btn-iniciar" class="boton-principal">
+                Iniciar rutina
+            </button>
+
+        </section>
+
+        <!-- PANTALLA EJERCICIOS -->
+        <section id="pantalla-ejercicio" class="pantalla">
+
+            <div class="barra-progreso">
+                <div id="progreso"></div>
+            </div>
+
+            <h2 id="titulo-ejercicio"></h2>
+
+            <img id="imagen-ejercicio" class="imagen-ejercicio">
+
+            <p id="descripcion-ejercicio"></p>
+
+            <div class="botones">
+
+                <button id="btn-audio" class="boton-secundario">
+                    🔊 Escuchar
+                </button>
+
+                <button id="btn-siguiente" class="boton-principal">
+                    Siguiente
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- PANTALLA FINAL -->
+        <section id="pantalla-final" class="pantalla">
+
+            <div class="check">✔</div>
+
+            <h2>¡Felicitaciones!</h2>
+
+            <p>
+                Has completado tu rutina exitosamente
+            </p>
+
+            <button id="btn-reiniciar" class="boton-principal">
+                Repetir rutina
+            </button>
+
+        </section>
+
+    </div>
+
+    <script src="ejercicios.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
+
