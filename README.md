@@ -62,6 +62,9 @@ Visual Studio Code: Desarrollo
 - Estadísticas básicas
 - Pantalla final de rutina
 
+![ejercicio](evidencias\ejercicio.png)
+
+
 ## Funcionalidades de accesibilidad
 
 - Ajuste de tamaño de letra
@@ -70,6 +73,9 @@ Visual Studio Code: Desarrollo
 - Diseño responsive
 - Interfaz minimalista
 - Botones grandes y visibles
+
+![accesibilidad](evidencias/accesibilidad.png)
+
 
 ---
 
