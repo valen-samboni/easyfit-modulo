@@ -6,11 +6,16 @@ EASYFIT es un mini módulo funcional desarrollado como proyecto, el cual busca m
 
 La solución fue diseñada aplicando principios de experiencia de usuario (UX), accesibilidad, innovación incremental e interacción humano-computador (HCI), permitiendo que usuarios con baja experiencia tecnológica puedan realizar ejercicios de manera segura y guiada.
 
+
+![logo](assets/img/logo.png)
+
 ---
 
 # Objetivo del mini módulo
 
 Desarrollar un módulo funcional accesible que permita a adultos mayores realizar rutinas de ejercicio guiadas mediante una interfaz simple, intuitiva y adaptable, incorporando herramientas de accesibilidad y persistencia de información.
+
+![inicio](evidencias/inicio.png)
 
 ---
 
