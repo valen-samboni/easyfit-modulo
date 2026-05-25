@@ -64,7 +64,6 @@ Visual Studio Code: Desarrollo
 
 ![ejercicio](evidencias\ejercicio.png)
 
-
 ## Funcionalidades de accesibilidad
 
 - Ajuste de tamaño de letra
