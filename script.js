@@ -81,7 +81,7 @@ function hablarTexto(texto){
 
     voz.lang = "es-ES";
 
-    voz.rate = 0.9;
+    voz.rate = 1;
 
     speechSynthesis.speak(voz);
 }
