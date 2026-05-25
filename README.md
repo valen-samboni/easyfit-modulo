@@ -62,9 +62,8 @@ Visual Studio Code: Desarrollo
 - Estadísticas básicas
 - Pantalla final de rutina
 
-![ejercicio](evidencias\ejercicio.png)
+![ejercicio](evidencias/ejercicio.png)
 
----
 ## Funcionalidades de accesibilidad
 
 - Ajuste de tamaño de letra
