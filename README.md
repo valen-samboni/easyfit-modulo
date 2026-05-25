@@ -290,12 +290,6 @@ También se consideró la importancia de respetar licencias y recursos utilizado
 
 ---
 
-## Repositorio GitHub
-
-![GitHub](evidencias/fase8_github.png)
-
----
-
 # Persistencia y almacenamiento
 
 El sistema utiliza LocalStorage para conservar:
